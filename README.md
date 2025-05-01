@@ -1,4 +1,4 @@
-# Florin Token Program
+# Florin Token Program (ƒ)
 
 This is the implementation of the Florin token (ƒ) for the ƒXYZ Network, a token that represents financial contributions to the network.
 
