@@ -39,18 +39,41 @@ The program is currently in development with the following status:
 
 ## Build Issues and Next Steps
 
-We're currently experiencing some build issues related to dependencies and platform tools. Here are the next steps to resolve these issues:
+The build issues have been resolved by ensuring compatibility between Solana, Anchor, and Rust versions. Here's the setup that works:
 
-1. **Dependency Management**:
-   - We initially tried to use spl-token-2022 but encountered issues with yanked dependencies
-   - Currently using the standard SPL token implementation via anchor-spl
-   - Will need to revisit Token-2022 integration when dependency issues are resolved
+1. **Environment Requirements**:
+   - Ubuntu 24.04 LTS (or any system with GLIBC 2.38+)
+   - Solana CLI v2.1.5
+   - Rust 1.79.0
+   - Required packages: `pkg-config`, `libssl-dev`
 
-2. **Platform Tools**:
-   - Build is failing due to missing platform-tools for ARM64 architecture
-   - Need to either use a different build environment or find compatible tools
+2. **Setup Instructions**:
+   ```bash
+   # Install Solana CLI v2.1.5
+   sh -c "$(curl -sSfL https://release.anza.xyz/v2.1.5/install)"
+   
+   # Install Rust and required version
+   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+   source $HOME/.cargo/env
+   rustup install 1.79.0
+   
+   # Set Rust version for this project
+   cd /path/to/florin
+   rustup override set 1.79.0
+   
+   # Install required system packages
+   apt update && apt install -y pkg-config libssl-dev
+   
+   # Build the project
+   anchor build
+   ```
 
-3. **Testing**:
+3. **Known Compatibility Issues**:
+   - solana-program v2.2.1 requires Rust 1.79.0+
+   - Anchor 0.31.1 needs to be compatible with the Solana version
+   - Token Extensions require Solana 1.18+ (which we satisfy with Solana 2.1.5)
+
+4. **Testing**:
    - Need to update test files to match the current implementation
    - Fix TypeScript errors in the test files
 

@@ -1,4 +1,5 @@
 [toolchain]
+solana = "1.17.0"
 package_manager = "yarn"
 
 [features]

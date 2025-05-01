@@ -49,7 +49,7 @@ describe("florin-token", () => {
   it("Initializes the Florin token mint", async () => {
     // Initialize the mint
     const tx = await program.methods
-      .initializeMint(decimals, mintAuthority.publicKey)
+      .initializeMint(decimals)
       .accounts({
         mint: mintKeypair.publicKey,
         mintAuthority: mintAuthority.publicKey,
@@ -58,7 +58,7 @@ describe("florin-token", () => {
         tokenProgram: TOKEN_PROGRAM_ID,
         rent: SYSVAR_RENT_PUBKEY,
       })
-      .signers([mintKeypair, mintAuthority.payer])
+      .signers([mintKeypair])
       .rpc();
     
     console.log("Initialize mint transaction signature", tx);
