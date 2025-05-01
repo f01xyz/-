@@ -1,0 +1,9 @@
+version: '3'
+services:
+  florin-token-builder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    command: anchor build
